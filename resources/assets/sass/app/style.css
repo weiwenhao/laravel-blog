@@ -1,0 +1,78 @@
+
+body{
+    padding-top: 50px;
+}
+.post-preview > a {
+    display: block;
+    color: #404040;
+}
+.post-preview > a:hover, .post-preview > a:focus {  /*鼠标移动上去和按下的属性*/
+    text-decoration: none;
+    color: #0085A1;
+}
+.post-preview > a > .post-title {
+    font-size: 36px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.post-preview > a > .post-subtitle {
+    font-size: 18px;
+    margin: 0;
+    font-weight: 300;
+    margin-bottom: 10px;
+}
+.post-preview > .post-meta {
+    color: #808080;
+    font-size: 18px;
+    font-style: italic;
+    margin-top: 0;
+}
+
+footer.container-fluid {
+    margin: 0px 0px;
+    padding: 0px;
+}
+footer > div.panel {
+    margin: 0px;
+    padding-top: 30px;
+}
+.intro-header {
+    /* background-color: #808080; */
+    background: no-repeat center center;
+    background-attachment: scroll;
+    background-size: cover;
+    -o-background-size: cover;
+    margin-bottom: 15px;
+}
+.intro-header .site-heading, .intro-header .page-heading {
+    text-align: center;
+    padding: 100px 0;
+    color: white;
+}
+.site-heading > h1{
+    font-size: 60px;
+}
+
+hr.small {
+    max-width: 100px;
+    margin: 15px auto;
+    border-width: 4px;
+    border-color: white;
+}
+ul.list-unstyled li {
+    line-height: 1.8em;
+    font-size: 1.3em;
+}
+
+/*最新文章栏目a标签*/
+
+.comment  {
+    border-bottom: 1px dotted #a5a5a5;
+    list-style: none;
+    margin-bottom: 20px;
+    padding-bottom:20px;
+}
+
+
+
