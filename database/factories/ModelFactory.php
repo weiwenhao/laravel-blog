@@ -40,3 +40,13 @@ $factory->define(\App\Models\Article::class, function (Faker\Generator $faker) {
         'cat_id' => $faker->randomElement($cat_ids),
     ];
 });
+
+$factory->define(App\Models\Comment::class, function (Faker\Generator $faker) {
+    $article_lengths = \App\Models\Article::all()->count();
+    return [
+        'username' => $faker->email,
+        'content' => $faker->text(mt_rand(200,500)),
+        'article_id' => mt_rand(1,$article_lengths),
+        'goodNum' => mt_rand(0,100)
+    ];
+});

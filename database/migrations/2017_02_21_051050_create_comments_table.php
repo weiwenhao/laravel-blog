@@ -18,7 +18,7 @@ class CreateCommentsTable extends Migration
             $table->string('username')->comment('用户名');
             $table->text('content')->comment('评论内容');
             $table->integer('article_id')->index()->comment('文章id');
-            $table->integer('goodNum')->unsigned()->comment('赞同数');
+            $table->integer('goodNum')->unsigned()->default(0)->comment('赞同数');
             $table->timestamps();
         });
     }

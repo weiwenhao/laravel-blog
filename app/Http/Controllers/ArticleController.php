@@ -34,9 +34,8 @@ class ArticleController extends Controller
 
         $articles = $this->article->getArticleList(5);
 
-
 //          dd($articles); //这里得到的是一个分页实例LengthAwarePaginator,因此可以调用该实例的方法
-        return view('home',compact('articles','cat_name','key_name'));
+        return view('home',compact('articles'));
     }
 
 

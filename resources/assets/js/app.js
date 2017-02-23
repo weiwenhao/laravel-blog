@@ -14,7 +14,7 @@ require('./bootstrap');
  */
 
 Vue.component('example', require('./components/Example.vue'));
-
+Vue.component('article-comment', require('./components/Comment.vue'));
 const app = new Vue({
     el: '#app'
 });
