@@ -24,13 +24,27 @@ class CommentRequest extends FormRequest
      */
     public function rules()
     {
-        dd();
-
         $rules =  [
-
+//            'captcha' => 'required|captcha',
+            'username' => 'required|between:3,20',
+            'content' => 'required|min:3',
             //
         ];
 
         return $rules;
+    }
+
+    /**
+     * 重写错误信息
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'content.required' => '评论内容不能为空。',
+            'content.min' => '评论内容不能少于3个字。',
+//            'display_name.required' => '权限名称必须填写',
+//            'display_name.unique' => '权限名称已经存在',
+        ];
     }
 }

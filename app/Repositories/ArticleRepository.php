@@ -48,7 +48,7 @@ class ArticleRepository extends Repository
      * 得到最新的几篇文章,服务于右侧文章列表
      */
     public function getNewArticle($num){
-        $data = Article::where('publish_at','<',Carbon::now())->orderBy('publish_at','desc')->limit($num)->get(['title','seo_title']);
+        $data = $this->model->where('publish_at','<',Carbon::now())->orderBy('publish_at','desc')->limit($num)->get(['title','seo_title']);
         return $data;
     }
 
@@ -86,7 +86,7 @@ class ArticleRepository extends Repository
             $where[] = ['cat_id',$cat_id];
 
         }
-        $data = Article::where($where);
+        $data = $this->model->where($where);
 
         if ($key_id){
             $key = Key::find($key_id);

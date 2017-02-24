@@ -93,6 +93,11 @@
 {{--页脚结束--}}
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+
+    {{--弹出层临时解决方案,带完善--}}
+    <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+    <script src="{{asset('vendor/layer/layer.js')}}"></script>
+
     @yield('js')
 </body>
 </html>

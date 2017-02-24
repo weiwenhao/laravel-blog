@@ -49,7 +49,7 @@
                                     @if($article->keys)
                                         @foreach( $article->keys as $key)
                                             <a href="/article?key_id={{ $key->id }}">
-                                                <span class="label label-info" style="font-size: 90%"> <i class="glyphicon glyphicon-tags"></i>&nbsp; &nbsp;{{ $key->name }}</span>
+                                                <span class="label label-info" style="font-size: 90%"> <i class="glyphicon glyphicon-tag"></i>&nbsp; &nbsp;{{ $key->name }}</span>
                                             </a>
                                             {{--<a href="/blog?tag=rem">{{ $key->name }}</a>--}}
                                         @endforeach
@@ -87,7 +87,7 @@
                     </div>
                 </div>
                 {{--评论区开始--}}
-                <article-comment article_id="{{ $article->id }}"></article-comment>
+                <article-comment article_id="{{ $article->id }}" ></article-comment>
                 {{--评论区结束--}}
             </div>
 
@@ -101,9 +101,8 @@
 
 @endsection
 @section('js')
+
     <script>
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
+
     </script>
 @stop

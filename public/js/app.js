@@ -12228,6 +12228,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /*组件选项定义,包括data,methods,等*/
 /* harmony default export */ __webpack_exports__["default"] = {
@@ -12236,29 +12245,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             username: null,
             content: null,
+
             comments: [],
             indexs: [],
+
             next_page_url: null,
             prev_page_url: null,
             last_page: null,
             current_page: null,
             per_pager: null,
-            total: null
+            total: null,
+            username_error: null,
+            content_error: null
 
         };
     },
 
     computed: {},
     created: function created() {
-        this.getCommentList('/api/comment');
+
+        this.getCommentList();
     },
 
     methods: {
+        /**
+         * 分页是否为选中样式
+         * @param index
+         * @returns {boolean}
+         */
         isActive: function isActive(index) {
             return this.current_page == index;
         },
-        getCommentList: function getCommentList(url) {
+
+        /**
+         * 得到评论列表
+         * @param url
+         */
+        getCommentList: function getCommentList() {
             var _this = this;
+
+            var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '/api/comment';
 
             if (url) {
                 axios.get(url, {
@@ -12287,20 +12313,45 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 });
             }
         },
+
+        /**
+         * 评论提交
+         */
         submitComment: function submitComment() {
+            var _this2 = this;
+
+            //清空error
+            this.username_error = null;
+            this.content_error = null;
             //axios提交到后端api
-            console.log(this.username);
-            console.log(this.content);
             axios.post('/api/comment', {
-                params: {
-                    username: this.username,
-                    content: this.content
+                username: this.username,
+                content: this.content,
+                article_id: this.article_id }).then(function (response) {
+                if (response.data) {
+                    //弹出评论成功
+                    layer.msg('评论成功', { icon: 1 });
+                    //清空输入框
+                    _this2.username = null;
+                    _this2.content = null;
+                    //从新进行get请求comments数据
+                    _this2.getCommentList(); //不带当前的页码的url,自动跳回第一页
+
+                    //                         this.getCommentList('/api/comment?page='+this.current_page) //依旧留在当前页
                 }
-            }).then(function (response) {
-                console.log(response);
             }).catch(function (error) {
-                console.log(error);
+                _this2.setError(error.response.data);
             });
+        },
+        setError: function setError(error_obj) {
+            //添加用户名的错误
+            if (error_obj.username) {
+                this.username_error = error_obj.username[0];
+            }
+            if (error_obj.content) {
+                //添加评论内容的错误
+                this.content_error = error_obj.content[0];
+            }
         }
     }
 };
@@ -14779,7 +14830,7 @@ exports = module.exports = __webpack_require__(36)();
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -32086,12 +32137,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": _vm._s(_vm.username)
     },
     on: {
+      "change": function($event) {},
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.username = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), (_vm.username_error) ? _c('div', {
+    staticClass: "alert alert-danger"
+  }, [_vm._v(_vm._s(_vm.username_error))]) : _vm._e()]), _vm._v(" "), _c('div', {
     staticClass: "form-group"
   }, [_c('textarea', {
     directives: [{
@@ -32111,14 +32165,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": _vm._s(_vm.content)
     },
     on: {
+      "change": function($event) {},
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.content = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), (_vm.content_error) ? _c('div', {
+    staticClass: "alert alert-danger"
+  }, [_vm._v(_vm._s(_vm.content_error))]) : _vm._e()]), _vm._v(" "), _c('div', {
     staticClass: "form-group"
-  }, [_vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _c('div', {
+  }, [_c('div', {
     staticClass: "pull-right"
   }, [_c('button', {
     staticClass: "btn btn-success",
@@ -32154,26 +32211,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "aria-hidden": "true"
     }
   }, [_vm._v("»")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col-md-3 col-md-offset-4"
-  }, [_c('img', {
-    attrs: {
-      "src": "http://usr.im/200x50?text=null",
-      "width": "100%",
-      "alt": ""
-    }
-  })])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col-md-3"
-  }, [_c('input', {
-    staticClass: "form-control",
-    attrs: {
-      "type": "text",
-      "placeholder": "请输入验证码"
-    }
-  })])
 }]}
 module.exports.render._withStripped = true
 if (false) {

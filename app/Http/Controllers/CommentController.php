@@ -20,7 +20,9 @@ class CommentController extends Controller
     }
 
     public function storyComment(CommentRequest $request){
-
+        /*$request->all()*/
+        $res = Comment::create($request->all());
+        return response()->json($res);
     }
 
 }

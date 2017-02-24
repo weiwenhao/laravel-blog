@@ -183,7 +183,10 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
 
         //视图composer
-        App\Providers\ComposerServiceProvider::class
+        App\Providers\ComposerServiceProvider::class,
+
+        //验证码
+         Mews\Captcha\CaptchaServiceProvider::class,
     ],
 
     /*
@@ -233,7 +236,11 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        //浏览器调试工具
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+
+        //验证码别名
+        'Captcha' => Mews\Captcha\Facades\Captcha::class,
     ],
 
 ];
