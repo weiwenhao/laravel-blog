@@ -23,14 +23,15 @@ Route::get('/', function () {
  */
 Route::group(['middleware' => 'web'], function () {
     Route::get('/article','ArticleController@index');
-
     Route::get('/article/{id}','ArticleController@show');
 });
 
 /*
  * 用户注册
  */
-Auth::routes();
+    Auth::routes();
+
+
 
 /**
  * 数据测试

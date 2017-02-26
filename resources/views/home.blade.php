@@ -35,7 +35,7 @@
                     <hr>
                     @endforeach
                     <div class="text-center">
-                        {{ $articles->appends(['cat_id'=>request('cat_id'),'key_id'=>request('key_id')])->links() }}
+                        {{ $articles->appends(['cat_id'=>request('cat_id'),'key_id'=>request('key_id'),'search'=>request('search')])->links() }}
                     </div>
 
                 </div>

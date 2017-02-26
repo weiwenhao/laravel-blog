@@ -78,20 +78,29 @@ class ArticleRepository extends Repository
     private function commonBuilder(){
         $key_id = request('key_id');
         $cat_id = request('cat_id');
-
+        $search = request('search');
         $where = [ //重构: 数据库的scrop方法中
             ['publish_at','<',Carbon::now()]
         ];
+
         if($cat_id){
             $where[] = ['cat_id',$cat_id];
 
         }
         $data = $this->model->where($where);
 
+        //搜索这里类似与cat_id直接加条件即可
+        if($search){ //不带标签部分,如果带标签怎么处理?连表吗?
+            $data = $data->where('title','like',"%$search%")
+                ->orWhere('description','like',"%$search%");
+//                ->orWhere('content','like',"%$search%"); //标题部分.在where的基础上添加一个
+        }
+
         if ($key_id){
             $key = Key::find($key_id);
             $data = $key->articles()->where($where); //加括号可以使用查询构造器
         }
+
         return $data;
     }
 }

@@ -1,12 +1,14 @@
 <div class="panel panel-default">
     <div class="panel-heading">搜索</div>
     <div class="panel-body">
-        <div class="col-md-8">
-            <input type="text" class=" form-control">
-        </div>
-        <div class="col-md-4">
-            <button class="btn btn-primary"><i class="glyphicon glyphicon-search"></i> 搜索</button>
-        </div>
+        <form action="/article" method="get">
+            <div class="col-md-8">
+                <input type="text" class=" form-control" name="search" value="{{ request('search') }}" placeholder="">
+            </div>
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i> 搜索</button>
+            </div>
+        </form>
     </div>
 </div>
 <div class="panel panel-default">
