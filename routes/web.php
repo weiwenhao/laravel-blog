@@ -25,11 +25,28 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/article','ArticleController@index');
     Route::get('/article/{id}','ArticleController@show');
 });
+Auth::routes();
 
 /*
- * 用户注册
+ * 后台
  */
-    Auth::routes();
+
+Route::group(['prefix' => 'admin','namespace'=>'Admin'], function () {
+    //登录方面路由
+    Route::get('login','Auth\LoginController@showLoginForm');
+    Route::post('login','Auth\LoginController@login');
+
+    Route::get('register','Auth\RegisterController@showRegistrationForm');
+    Route::post('register','Auth\RegisterController@register');
+
+    Route::post('logout','Auth\LoginController@logout');
+    //后台主页
+    Route::get('','AdminController@index');
+
+});
+
+
+
 
 
 
