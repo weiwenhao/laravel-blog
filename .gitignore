@@ -4,6 +4,7 @@
 /storage/*.key
 /vendor
 /.idea
+/资料
 Homestead.json
 Homestead.yaml
 .env
