@@ -11,7 +11,7 @@ class AdminsTableSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Admin\Admin::create([
+        \App\Models\Admin::create([
             'name' => 'wei',
             'email' => '123@123.com',
             'password' => bcrypt('123456'),
