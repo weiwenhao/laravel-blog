@@ -76,7 +76,7 @@ return [
         ],
         'admins' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Admin\Admin::class,
+            'model' => \App\Models\Admin\Admin::class,
         ],
 
         // 'users' => [
@@ -107,11 +107,11 @@ return [
             'expire' => 60,
         ],
 
-        'admins' => [
+      /*  'admins' => [
             'provider' => 'admins',
             'table' => 'password_resets',
             'expire' => 60,
-        ],
+        ],*/
     ],
 
 ];

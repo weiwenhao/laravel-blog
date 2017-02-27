@@ -2,6 +2,6 @@
 
 @section('content')
     <div class="container">
-        后台主页
+        {{ auth('admin')->user()->name }}
     </div>
 @endsection

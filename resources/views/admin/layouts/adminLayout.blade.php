@@ -35,8 +35,8 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                    <a class="navbar-brand" href="{{ url('/admin') }}">
+                        Admin
                     </a>
                 </div>
 
@@ -49,24 +49,24 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
-                        @if (Auth::guest('admin'))
-                            <li><a href="login">Login Admin</a></li>
-                            <li><a href="register">Register Admin</a></li>
+                        @if (Auth('admin')->guest('admin'))  {{--通过认证?--}}
+                            <li><a href="/admin/login">Login Admin</a></li>
+                            <li><a href="/admin/register">Register Admin</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ auth('admin')->user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{ route('logout') }}"
+                                        <a href="/admin/logout"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>
 
-                                        <form id="logout-form" action="logout" method="POST" style="display: none;">
+                                        <form id="logout-form" action="/admin/logout" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
