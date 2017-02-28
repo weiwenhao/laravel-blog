@@ -72,7 +72,7 @@ class ArticleRepository extends Repository
 
 
     /**
-     * 得到文章的查询构造器
+     * 得到文章的datetables需要用到的数据
      * @return mixed Builder
      */
     private function commonBuilder(){
@@ -102,5 +102,47 @@ class ArticleRepository extends Repository
         }
 
         return $data;
+    }
+
+
+    /**
+     * ajaxIndex获得datatables需要的数据
+     * @return array
+     */
+    public function getDataTables(){  // [] column
+//        dd(request()->all());
+        $draw = request('draw',1);
+        $order['field'] =  request('columns.'.request('order.0.column',0).'.name','id');
+        $order['dir'] = request('order.0.dir','asc');
+        $start = request('start');
+        $length = request('length');
+        $search['value'] = request('search.value');
+        $search['regex'] = request('search.regex','false'); //字符串格式的false和true
+        $data = $this->model->with('category');
+        if ($search['value']){
+            if ($search['regex'] == 'true'){ //使用正则,
+                $data =  $data->where('title','like',"%{$search['value']}%")
+                    ->orWhere('description','like',"%{$search['value']}%")
+                    ->orderBy($order['field'],$order['dir']);
+            }else{
+                $data =  $data->where('title',$search['value'])
+                    ->orWhere('description',$search['value'])
+                    ->orderBy($order['field'],$order['dir']);
+            }
+        }
+        //记录总记录数
+        $total = $data->count();
+        //加上排序和分页
+        $data = $data->orderBy($order['field'],$order['dir'])->offset($start)->limit($length)->get(['id','title','description','publish_at','updated_at','cat_id']);
+        //为返回对象添加一个cat_name
+        foreach ($data as $value){ //取出关联键才能使用关联模型, 对象自带引用传递属性
+            $value->cat_name = $value->category->cat_name;
+        }
+        return [
+            "draw" => $draw,
+            "recordsTotal" => $total,
+            "recordsFiltered" => $total,
+            "data" => $data
+        ];
     }
 }

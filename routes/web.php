@@ -12,7 +12,7 @@
 */
 
 use Illuminate\Support\Facades\Input;
-
+//auth('admin')->logout();
 Route::get('/', function () {
 //    return view('welcome');
     return redirect('/article');
@@ -42,6 +42,20 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin'], function () {
     Route::post('logout','Auth\LoginController@logout');
     //后台主页
     Route::get('','AdminController@index');
+});
+
+Route::group(['prefix' => 'admin','namespace'=>'Admin'], function () {
+    //后台框架
+    Route::get('',function (){  //  /admin  -> 框架层
+       return view('admin.layouts.ifarme'); //外层框架
+    });
+    //控制台
+    Route::get('index',function (){  //第一个界面, dash,也就是面板页
+        return view('admin.index');
+    });
+    //文章管理
+    Route::get('/article/ajaxIndex','ArticleController@ajaxIndex');
+    Route::resource('article', 'ArticleController');
 
 });
 
@@ -70,6 +84,7 @@ Route::get('/test',function (Faker\Generator $faker,\App\Repositories\ArticleRep
 //    dd(Auth::guest('admin')); //true ,没有登录返回true??
 //    dd(Auth()->guest('admin')); //true ,没有登录返回true??
 //        Auth::logout();
+    dd(\App\Models\Article::with('category')->get()[0]->category);
 });
 
 // [your site path]/Http/routes.php
