@@ -187,6 +187,9 @@ return [
 
         //验证码
          Mews\Captcha\CaptchaServiceProvider::class,
+
+        //文章标题 slug优化
+        \JellyBool\Translug\TranslugServiceProvider::class,
     ],
 
     /*
@@ -241,6 +244,9 @@ return [
 
         //验证码别名
         'Captcha' => Mews\Captcha\Facades\Captcha::class,
+
+        //seo_title优化函数
+        'Translug' => \JellyBool\Translug\TranslugFacade::class,
     ],
 
 ];

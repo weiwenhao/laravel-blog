@@ -10,14 +10,16 @@
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
             <div class="col-sm-12">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>文章列表</h5>
-                        <div class="ibox-tools">
-                            <a href="" class="btn btn-success">添加文章</a>
-                        </div>
+                <div class="alert alert-success alert-dismissable">
+                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                    添加成功
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="penel-title">文章列表<a href="/admin/article/create" class="btn btn-success pull-right">添加文章</a>
+                        </h3>
                     </div>
-                    <div class="ibox-content ">
+                    <div class="panel-body">
                         <table id="article-list" class="table table-striped table-bordered">
                             <thead>
                             <tr>
@@ -42,6 +44,7 @@
     {{--datatablesjs--}}
     <script src="/back/js/plugins/dataTables/jquery.dataTables.js"></script>
     <script src="/back/js/plugins/dataTables/dataTables.bootstrap.js"></script>
+
 <script>
     var Article = function () {
         var run = function () {

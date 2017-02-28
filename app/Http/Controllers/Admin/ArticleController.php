@@ -2,21 +2,36 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\ArticleRequest;
 use App\Repositories\ArticleRepository;
+use App\Repositories\CategoryRepository;
+use App\Repositories\KeyRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class ArticleController extends Controller
 {
     protected $article;
+    /**
+     * @var KeyRepository
+     */
+    private $key;
+    /**
+     * @var CategoryRepository
+     */
+    private $cat;
 
     /**
      * ArticleController constructor.
-     * @param $article
+     * @param ArticleRepository $article
+     * @param KeyRepository $key
+     * @param CategoryRepository $cat
      */
-    public function __construct(ArticleRepository $article)
+    public function __construct(ArticleRepository $article,KeyRepository $key,CategoryRepository $cat)
     {
         $this->article = $article;
+        $this->key = $key;
+        $this->cat = $cat;
     }
 
     /**
@@ -44,17 +59,22 @@ class ArticleController extends Controller
      */
     public function create()
     {
+        //关键字数据
+        $keys = $this->key->all(['id','name']);
+        //分类数据
+        $cats = $this->cat->all(['id','cat_name']);
+        return view('admin.article.add',compact('keys','cats'));
         //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
+        dd($request->all());
         //
     }
 

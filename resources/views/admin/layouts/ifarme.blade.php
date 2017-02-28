@@ -133,7 +133,7 @@
 <script src="/back/js/plugins/layer/layer.min.js"></script>
 
 <!-- 自定义js -->
-<script src="/back/js/hAdmin.js?v=4.1.0"></script>
+<script src="/back/js/hAdmin.js"></script>
 <script type="text/javascript" src="/back/js/index.js"></script>
 
 <!-- 第三方插件 -->

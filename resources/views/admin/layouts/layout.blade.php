@@ -15,8 +15,8 @@
     <link href="/back/css/bootstrap.min.css" rel="stylesheet">
     <link href="/back/css/font-awesome.css" rel="stylesheet">
     <link href="/back/css/animate.css" rel="stylesheet">
-    <link href="/back/css/style.css" rel="stylesheet">
     @yield('css')
+    <link href="/back/css/style.css" rel="stylesheet">
 </head>
 
 <body class="gray-bg">
