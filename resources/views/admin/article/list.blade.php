@@ -18,7 +18,7 @@
                 @endif
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="penel-title">文章列表<a href="/admin/article/create" class="btn btn-success pull-right">添加文章</a>
+                        <h3 class="penel-title">文章列表<a href="/admin/article/create" class="btn btn-primary pull-right">添加文章</a>
                         </h3>
                     </div>
                     <div class="panel-body">
@@ -84,7 +84,7 @@
                 // "lengthMenu": [15,25,50], //自定义每页显示条数菜单
 
                 "search" : {
-                    "regex": true
+                    "regex": true  //正则搜索还是精确搜索
                 },
                 "ajax": {
                     "url" : '/admin/article/ajaxIndex',
@@ -142,9 +142,9 @@
                         render: function(data, type, row, meta) { //row中返回在 后台get或者是all取出的一条记录,
                             // return '<input type="checkbox" name="checklist" value="' + row.id + '" />' //return的数据会覆盖第 targets中指定的列数
                             //row中拥有一行中的所有数据, row.id  row.name row.display_name
-                            return "<button id='show-article'  value="+row.seo_title+" class='btn btn-xs btn-success'><i class='fa fa-eye'></i> 预览</button> "+
+                            return "<button value="+row.seo_title+" class='btn btn-xs btn-success show-article'><i class='fa fa-eye'></i> 预览</button> "+
                                 "<a  href='/admin/article/"+row.id+"/edit' class='btn btn-xs btn-info'><i class='fa fa-edit'></i> 编辑</a> " +
-                                "<button id='del-article'  value="+row.id+" class='btn btn-xs btn-danger'><i class='fa fa-trash'></i>  删除</button>";
+                                "<button value="+row.id+" class='btn btn-xs btn-danger del-article'><i class='fa fa-trash'></i>  删除</button>";
                         }
                     },
                     //给第二列指定宽度为表格整个宽度的20%
@@ -160,7 +160,7 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            $('body').on('click', 'button#del-article', function() {
+            $('body').on('click', 'button.del-article', function() {
                 var url = '/admin/article/'+$(this).val(); //this代表删除按钮的DOM对象
                 layer.confirm('你确定要将该文章吗？', {
                     btn: ['确定', '取消'],
@@ -174,18 +174,20 @@
                             if (data){
                                 //刷新dt
                                 table.ajax.reload(null, false); //databales对象从新加载
+                                layer.close(index); //关闭larvel弹出框
+                                layer.msg('删除成功');
                             }
                         }
 
                     });
-                    layer.close(index); //关闭larvel弹出框
+
                 });
             });
 
             /**
              * layer实现查看文章
              */
-            $('body').on('click', 'button#show-article', function() {
+            $('body').on('click', 'button.show-article', function() {
                 var url = '/article/'+$(this).val(); //this代表删除按钮的DOM对象
                 layer.open({
                     type: 2,

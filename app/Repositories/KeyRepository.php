@@ -23,4 +23,14 @@ class KeyRepository extends Repository
     {
         return Key::class;
     }
+
+    /**
+     * 倒序获得标签列表
+     * @return mixed
+     */
+    public function getKeyList()
+    {
+        return $this->model->orderBy('id','desc')->get();  //查询构造器不存在all方法, all属于orm模型
+    }
+
 }

@@ -104,6 +104,7 @@ return [
         'captcha' => [
             'captcha'=> ':attribute错误',
         ]
+
     ],
 
     /*

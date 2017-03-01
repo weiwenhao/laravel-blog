@@ -56,7 +56,8 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin'], function () {
     //文章管理
     Route::get('/article/ajaxIndex','ArticleController@ajaxIndex');
     Route::resource('article', 'ArticleController');
-
+    //标签管理
+    Route::get('/key/ajax_key','KeyController@ajaxIndex');
     Route::resource('key', 'KeyController');
 
 });

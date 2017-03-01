@@ -6,12 +6,12 @@
             <li class="nav-header">
                 <div class="dropdown profile-element">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                <span class="clear">
-                                    <span class="block m-t-xs" style="font-size:20px;">
-                                        <i class="fa fa-area-chart"></i>
-                                        <strong class="font-bold">Blog Admin</strong>
-                                    </span>
-                                </span>
+                        <span class="clear">
+                            <span class="block m-t-xs" style="font-size:20px;">
+                                <i class="fa fa-area-chart"></i>
+                                <strong class="font-bold">Blog Admin</strong>
+                            </span>
+                        </span>
                     </a>
                 </div>
                 <div class="logo-element">hAdmin
@@ -36,7 +36,7 @@
                 </a>
             </li>
             <li>
-                <a class="J_menuItem" href="/admin/tag">
+                <a class="J_menuItem" href="/admin/key">
                     <i class="fa fa-tags"></i>
                     <span class="nav-label">标签管理</span>
                 </a>

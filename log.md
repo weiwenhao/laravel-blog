@@ -13,8 +13,9 @@
 		
 		`<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>`
      	   `<script src="{{asset('vendor/layer/layer.js')}}"></script>`
-
-	
+- datatables使用ajax做数据源时按照官网的写法报错aData is undifind
+	暂时解决办法,加上一行 `"sAjaxDataProp" : '',//加上该条ajax数据源才有效`
+	- 详见 key/list.blade.php中的datatables配置部分
 # vue使用经验
 
 1. `v-if=null 或false 或0 或空字符串 或`时不显示 -- {} ,[],或者任意字符串时则显示

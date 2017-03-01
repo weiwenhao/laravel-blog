@@ -163,7 +163,10 @@ class ArticleController extends Controller
     public function destroy($id)
     {
 //        dd($this->article->delete($id));//int  1  0
-        $res = $this->article->delete($id);
+        //删除中间表中的数据
+        $article = $this->article->find($id);
+        $article->keys()->sync([]);
+        $res = $article->delete($id);
         return response()->json($res);
     }
 }
