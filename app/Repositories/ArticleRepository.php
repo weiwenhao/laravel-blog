@@ -113,7 +113,7 @@ class ArticleRepository extends Repository
 //        dd(request()->all());
         $draw = request('draw',1);
         $order['field'] =  request('columns.'.request('order.0.column',0).'.name','id');
-        $order['dir'] = request('order.0.dir','asc');
+        $order['dir'] = request('order.0.dir','asc'); //设置默认的排序值
         $start = request('start');
         $length = request('length');
         $search['value'] = request('search.value');
@@ -133,9 +133,9 @@ class ArticleRepository extends Repository
         //记录总记录数
         $total = $data->count();
         //加上排序和分页
-        $data = $data->orderBy($order['field'],$order['dir'])->offset($start)->limit($length)->get(['id','title','description','publish_at','updated_at','cat_id']);
-        //为返回对象添加一个cat_name
-        foreach ($data as $value){ //取出关联键才能使用关联模型, 对象自带引用传递属性
+        $data = $data->orderBy($order['field'],$order['dir'])->offset($start)->limit($length)->get(['id','title','seo_title','description','publish_at','updated_at','cat_id']);
+        //为返回对象添加一个cat_name,再添加两个按钮,编辑和删除
+        foreach ($data as $value){ //取出关联键才能使用关联模型, 对象自带引用传递属性 ,$value是单个article模型
             $value->cat_name = $value->category->cat_name;
         }
         return [

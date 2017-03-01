@@ -23,7 +23,7 @@ class ArticleRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules =  [
             'title' => 'required|min:3',
             'description' => 'required|min:9',
             'content' => 'required|min:20',
@@ -32,6 +32,10 @@ class ArticleRequest extends FormRequest
             'publish_at' => 'required|date',
             //
         ];
+        if(request()->isMethod('PUT') || request()->isMethod('PATCH')){
+
+        }
+        return $rules;
     }
     /**
      * 重写错误信息

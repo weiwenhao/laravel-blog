@@ -57,6 +57,8 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin'], function () {
     Route::get('/article/ajaxIndex','ArticleController@ajaxIndex');
     Route::resource('article', 'ArticleController');
 
+    Route::resource('key', 'KeyController');
+
 });
 
 
@@ -84,7 +86,9 @@ Route::get('/test',function (Faker\Generator $faker,\App\Repositories\ArticleRep
 //    dd(Auth::guest('admin')); //true ,没有登录返回true??
 //    dd(Auth()->guest('admin')); //true ,没有登录返回true??
 //        Auth::logout();
-    dd(\App\Models\Article::with('category')->get()[0]->category);
+//    dd(\App\Models\Article::with('category')->get()[0]->category);
+//    echo \App\Models\Article::find(1)->category->id;
+//    dd(\App\Models\Article::find(1)->keys->toArray());
 });
 
 // [your site path]/Http/routes.php
