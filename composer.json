@@ -9,6 +9,7 @@
         "barryvdh/laravel-debugbar": "^2.3",
         "barryvdh/laravel-ide-helper": "^2.3",
         "bosnadev/repositories": "^0.13.0",
+        "intervention/image": "^2.3",
         "jellybool/translug": "^1.0",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",

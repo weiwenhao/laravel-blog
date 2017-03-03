@@ -14,20 +14,16 @@ class CategoryTableSeeder extends Seeder
     {
         //
         Category::create([
-           'cat_name' => 'PHP',
-            'cat_desc' => '框架和基础知识的教学'
+           'name' => 'PHP',
         ]);
         Category::create([
-            'cat_name' => 'JAVA SCRIPT',
-            'cat_desc' => '前段框架的学习'
+            'name' => 'JAVA SCRIPT',
         ]);
         Category::create([
-            'cat_name' => '算法初步',
-            'cat_desc' => '对《算法第4版的学习和感悟》'
+            'name' => '算法初步',
         ]);
         Category::create([
-            'cat_name' => '心情随笔',
-            'cat_desc' => '则一事，终一生。'
+            'name' => '心情随笔',
         ]);
 
 

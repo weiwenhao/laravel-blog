@@ -44,7 +44,7 @@
                                     <select class="cat-select form-control" name="cat_id">
                                         <option value="">请选择</option>
                                         @foreach($cats as $cat)
-                                            <option value="{{ $cat->id }}" {{ $cat->id == old('cat_id')?'selected':'' }}>{{ $cat->cat_name }}</option>
+                                            <option value="{{ $cat->id }}" {{ $cat->id == old('cat_id')?'selected':'' }}>{{ $cat->name }}</option>
                                        @endforeach
                                     </select>
                                     @if($errors->has('cat_id'))

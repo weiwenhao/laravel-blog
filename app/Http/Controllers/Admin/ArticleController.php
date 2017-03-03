@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\ArticleRequest;
 use App\Repositories\ArticleRepository;
 use App\Repositories\CategoryRepository;
+use App\Repositories\CommentRepository;
 use App\Repositories\KeyRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -20,18 +21,24 @@ class ArticleController extends Controller
      * @var CategoryRepository
      */
     private $cat;
+    /**
+     * @var CommentRepository
+     */
+    private $comment;
 
     /**
      * ArticleController constructor.
+     * @param CommentRepository $comment
      * @param ArticleRepository $article
      * @param KeyRepository $key
      * @param CategoryRepository $cat
      */
-    public function __construct(ArticleRepository $article,KeyRepository $key,CategoryRepository $cat)
+    public function __construct(CommentRepository $comment,ArticleRepository $article,KeyRepository $key,CategoryRepository $cat)
     {
         $this->article = $article;
         $this->key = $key;
         $this->cat = $cat;
+        $this->comment = $comment;
     }
 
     /**
@@ -62,7 +69,7 @@ class ArticleController extends Controller
         //关键字数据
         $keys = $this->key->all(['id','name']);
         //分类数据
-        $cats = $this->cat->all(['id','cat_name']);
+        $cats = $this->cat->all(['id','name']);
         return view('admin.article.add',compact('keys','cats'));
         //
     }
@@ -122,7 +129,7 @@ class ArticleController extends Controller
         //关键字数据
         $keys = $this->key->all(['id','name']);
         //分类数据
-        $cats = $this->cat->all(['id','cat_name']);
+        $cats = $this->cat->all(['id','name']);
         //单条文章数据
         $article = $this->article->find($id);
         //$key_ids
@@ -163,9 +170,11 @@ class ArticleController extends Controller
     public function destroy($id)
     {
 //        dd($this->article->delete($id));//int  1  0
-        //删除中间表中的数据
+
         $article = $this->article->find($id);
-        $article->keys()->sync([]);
+        $article->keys()->sync([]); //删除关键字中间表中的数据 ,这种删除思路是, 使用 article表中的key标签为空,即该article_id,没有对应的key_id
+        // Comment::where('article_id',$id)->delete()//删除该文章对应的所有评论
+        $this->comment->deleteComment($id); //删除该文章对应的评论数据
         $res = $article->delete($id);
         return response()->json($res);
     }

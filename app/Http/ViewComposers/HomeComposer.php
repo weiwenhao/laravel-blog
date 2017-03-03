@@ -59,7 +59,7 @@ class HomeComposer
         $title = null;
         //指定标题栏目
         if ($cat_id){
-            $title = $this->category->find($cat_id)->cat_name;
+            $title = $this->category->find($cat_id)->name;
         }
         //指定标题栏目
         if ($key_id){

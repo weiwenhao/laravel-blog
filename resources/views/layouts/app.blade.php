@@ -50,7 +50,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         @foreach($categorys as $category)
-                            <li><a href="/article?cat_id={{ $category->id }}">{{ $category->cat_name }}</a></li>
+                            <li><a href="/article?cat_id={{ $category->id }}">{{ $category->name }}</a></li>
                         @endforeach
                         <li><a href="#">CALL ME</a></li>
 

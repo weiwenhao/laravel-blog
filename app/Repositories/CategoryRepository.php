@@ -24,4 +24,5 @@ class CategoryRepository extends Repository
     {
         return Category::class;
     }
+
 }

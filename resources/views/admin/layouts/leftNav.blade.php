@@ -8,13 +8,13 @@
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <span class="clear">
                             <span class="block m-t-xs" style="font-size:20px;">
-                                <i class="fa fa-area-chart"></i>
+                                <i class="fa fa-paper-plane"></i>
                                 <strong class="font-bold">Blog Admin</strong>
                             </span>
                         </span>
                     </a>
                 </div>
-                <div class="logo-element">hAdmin
+                <div class="logo-element">Blog
                 </div>
             </li>
             <li>

@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Repositories\KeyRepository;
+use App\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class KeyController extends Controller
+class CategoryController extends Controller
 {
-    protected $key;
+    protected $category;
 
     /**
-     * KeyController constructor.
-     * @param $key
+     * CategoryController constructor.
+     * @param CategoryRepository $category
+     * @internal param $category
      */
-    public function __construct(KeyRepository $key)
+    public function __construct(CategoryRepository $category)
     {
-        $this->key = $key;
+        $this->category = $category;
     }
 
     /**
@@ -25,8 +26,8 @@ class KeyController extends Controller
      */
     public function ajaxIndex()
     {
-        $keys = $this->key->all();
-        return response()->json($keys);
+        $cat = $this->category->all();
+        return response()->json($cat);
     }
 
     /**
@@ -36,7 +37,7 @@ class KeyController extends Controller
      */
     public function index()
     {
-        return view('admin.key.list');
+        return view('admin.category.list');
     }
 
     /**
@@ -60,13 +61,13 @@ class KeyController extends Controller
         //表单验证
         $this->validate($request, [
 //            'title' => 'required|unique:posts|max:255',
-            'name' => 'required|unique:keys'
+            'name' => 'required|unique:categories'
         ],[
-            'name.required' => '请填写关键字！',
-            'name.unique' => '该关键字已经被使用！'
+            'name.required' => '请填写分类名！',
+            'name.unique' => '该分类名已经被使用！'
         ]);
         //数据插入
-        $res = $this->key->create($request->all());
+        $res = $this->category->create($request->all());
         if($res){
 //            return response()->json($res); //直接把新插入的整条数据返回??前台不需要
             return response()->json(1);
@@ -108,15 +109,15 @@ class KeyController extends Controller
         //表单验证
         $this->validate($request, [
 //            'title' => 'required|unique:posts|max:255',
-            'name' => 'required|unique:keys,name,'.$id
+            'name' => 'required|unique:categories,name,'.$id
         ],[
-            'name.required' => '请填写关键字！',
-            'name.unique' => '该关键字已经被使用！'
+            'name.required' => '请填写分类名！',
+            'name.unique' => '该分类名已经被使用！'
         ]);
         //入库操作
-        $key = $this->key->find($id);
-        $key->name = $request->get('name');
-        $res = $key->save();
+        $category = $this->category->find($id);
+        $category->name = $request->get('name');
+        $res = $category->save();
         return response()->json($res);
     }
 
@@ -128,10 +129,8 @@ class KeyController extends Controller
      */
     public function destroy($id)
     {
-        $key = $this->key->find($id);
-        //清空中间表中的该标签对应的信息
-        $key->articles()->sync([]); //使该key没有对应的文章,即清空中间表
-        $res = $key->delete($id);
+        $category = $this->category->find($id);
+        $res = $category->delete($id);
         return response()->json($res);  //true
 
     }

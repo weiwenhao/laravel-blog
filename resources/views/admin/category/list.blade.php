@@ -18,14 +18,14 @@
                 @endif
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="penel-title">标签列表</h3>
+                        <h3 class="penel-title">分类列表</h3>
                     </div>
                     <div class="panel-body">
-                        <table id="key-list" class="table table-bordered table-hover">
+                        <table id="cat-list" class="table table-bordered table-hover">
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>关键字</th>
+                                <th>分类名称</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
@@ -33,11 +33,11 @@
 
                     </div>
                     <div class="panel-footer">
-                        <form class="form-horizontal" id="add-key">
+                        <form class="form-horizontal" id="add-cat">
                             <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-5 control-label">添加关键字:</label>
+                                <label for="inputEmail3" class="col-sm-5 control-label">添加分类:</label>
                                 <div class="col-sm-3">
-                                    <input type="text" name="name" class="form-control"  placeholder="关键字名称">
+                                    <input type="text" name="name" class="form-control"  placeholder="分类名称">
                                 </div>
                                 <div class="col-sm-4">
                                     <button type="submit" class="btn btn-success">添加</button>
@@ -57,14 +57,14 @@
     <!-- layer javascript -->
     <script src="/back/js/plugins/layer/layer.min.js"></script>
     <script>
-        var Key = function () {
+        var Cat = function () {
             var run = function () {
                 /**
                  * 这里改成ajax数据源
                  * datatables配置
                  * @type {jQuery}
                  */
-                var table = $('#key-list').DataTable( {
+                var table = $('#cat-list').DataTable( {
                     stateSave: false,//保存当前页面状态,再次刷新进来依旧显示当前状态,比如本页的排序规则,显示记录条数
                     language: {
                         "sProcessing": "处理中...",
@@ -89,7 +89,7 @@
                     }, //语言国际化
                     // "lengthMenu": [15,25,50], //自定义每页显示条数菜单
                     "sAjaxDataProp" : '',//加上该条ajax数据源才有效
-                    "ajax": "/admin/key/ajax_key",
+                    "ajax": "/admin/category/ajax_category",
                     "order": [[ 0, "desc" ]],
                     "columns": [
                         { "data": "id" },
@@ -101,8 +101,8 @@
                         {
                             "targets": -1, //制定列
                             render : function (data, type, row, meta) { //row相当于数据表中的一行,即get获得的一行数据
-                                return "<button value='"+row.id+"' class='btn btn-xs btn-info edit-key'><i class='fa fa-edit'></i> 编辑</button>&nbsp;"+
-                                "<button value='"+row.id+"' class='btn btn-xs btn-danger del-key'><i class='fa fa-trash'></i>  删除</button>";
+                                return "<button value='"+row.id+"' class='btn btn-xs btn-info edit-cat'><i class='fa fa-edit'></i> 编辑</button>&nbsp;"+
+                                "<button value='"+row.id+"' class='btn btn-xs btn-danger del-cat'><i class='fa fa-trash'></i>  删除</button>";
                             }
 
                         }
@@ -116,8 +116,8 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
                 });
-                $('body').on('click', 'button.del-key', function() {
-                    var url = '/admin/key/'+$(this).val(); //this代表删除按钮的DOM对象
+                $('body').on('click', 'button.del-cat', function() {
+                    var url = '/admin/category/'+$(this).val(); //this代表删除按钮的DOM对象
                     layer.confirm('你确定要将该标签吗？', {
                         btn: ['确定', '取消'],
                         icon: 2,
@@ -144,55 +144,55 @@
                  * ajax编辑标签
                  * 在原有的tr上制作出编辑表单
                  */
-                $('body').on('click','button.edit-key',function () {
+                $('body').on('click','button.edit-cat',function () {
                     //点击编辑按钮,触发所有的取消事件
-                    $('.close-key').trigger('click');
-//                     console.log(this); //<button value="1" class="btn btn-xs btn-info edit-key">
+                    $('.close-cat').trigger('click');
+//                     console.log(this); //<button value="1" class="btn btn-xs btn-info edit-cat">
 
                     //得到需要的数据
                     var button = $(this)
                     var tr = button.parent().parent(); //tr是一个jq对象
                     var td2 = tr.find('td').eq(1); //第二列td,即是拥有名字的那一列td
-                    var key_name = td2.text();      //取得第2的td中的值
+                    var cat_name = td2.text();      //取得第2的td中的值
                     //重新定义
-                    button.parent().html("<button value='"+button.val()+"' class='btn btn-xs btn-success confirm-key'><i class='fa fa-check'></i> 确定</button>&nbsp;"+
-                        "<button value='"+button.val()+"' key_name='"+key_name+"' class='btn btn-xs btn-danger close-key'><i class='fa fa-close'></i>  取消</button>"
+                    button.parent().html("<button value='"+button.val()+"' class='btn btn-xs btn-success confirm-cat'><i class='fa fa-check'></i> 确定</button>&nbsp;"+
+                        "<button value='"+button.val()+"' cat_name='"+cat_name+"' class='btn btn-xs btn-danger close-cat'><i class='fa fa-close'></i>  取消</button>"
                     )
                     //将第2栏的td内部追加一变成一个编辑框,value=原来td中的html值
-                    td2.html('<input type="text" name="name" value="'+key_name+'" class="form-control"/>');
-                    //点击确定发送ajax,回调中如果添加完成,则更改第二栏中key的值
+                    td2.html('<input type="text" name="cat_name" value="'+cat_name+'" class="form-control"/>');
+                    //点击确定发送ajax,回调中如果添加完成,则更改第二栏中cat的值
                 })
 
                 /*
                 * 点击取消时取消表单的提交,将表单恢复原样
                 * */
-                $('body').on('click','button.close-key',function () {
+                $('body').on('click','button.close-cat',function () {
                     var button = $(this);//取消按钮
                     var tr = button.parent().parent(); //tr是一个jq对象
                     var td2 = tr.find('td').eq(1); //第二列td,即是拥有名字的那一列td
-                    var key_name = button.attr('key_name');
-                    var key_id = button.val()
+                    var cat_name = button.attr('cat_name');
+                    var cat_id = button.val()
                     //第二列设置为文本框
-                    td2.html(key_name);
-                    button.parent().html("<button value='"+key_id+"' class='btn btn-xs btn-info edit-key'><i class='fa fa-edit'></i> 编辑</button>&nbsp;" +
-                        "<button value='"+key_id+"' class='btn btn-xs btn-danger del-key'><i class='fa fa-trash'></i>  删除</button>");
+                    td2.html(cat_name);
+                    button.parent().html("<button value='"+cat_id+"' class='btn btn-xs btn-info edit-cat'><i class='fa fa-edit'></i> 编辑</button>&nbsp;" +
+                        "<button value='"+cat_id+"' class='btn btn-xs btn-danger del-cat'><i class='fa fa-trash'></i>  删除</button>");
                 })
 
                 /**
                  *ajax提交编辑菜单
                  */
-                $('body').on('click','button.confirm-key',function () {
+                $('body').on('click','button.confirm-cat',function () {
                     //找到该行的input输入框
                     var button = $(this)
                     var tr = button.parent().parent(); //tr是一个jq对象
                     var td2 = tr.find('td').eq(1); //第二列td,即是拥有名字的那一列td
-                    var key_name = td2.find('input').val();
+                    var cat_name = td2.find('input').val();
                     var id = button.val();
                     //ajax,post提交到后台添加数据
                     $.ajax({
                         type: "PUT",
-                        url: "/admin/key/"+id,
-                        data: "name="+key_name,
+                        url: "/admin/category/"+id,
+                        data: "name="+cat_name,
                         success: function(msg){
                              if(msg){ // true
                                 //重新加载datatables
@@ -214,14 +214,14 @@
                 /**
                  * ajax添加标签信息
                  */
-                $('body').on('submit','form#add-key',function () {
+                $('body').on('submit','form#add-cat',function () {
                     var data = $(this).serialize(); //name=sfsadf%E5%AE%89%E6%8A%9A&test=sdfsdfsdf
                     var form = $(this);
                     //可以直接去尝试在表单中使用find搜索input,且name为name的
                     //ajax添加一条数据
                     $.ajax({
                         type: "POST",
-                        url: "/admin/key",
+                        url: "/admin/category",
                         data:data,
                         success: function(msg){
                              if(msg){
@@ -253,7 +253,7 @@
         }();
 
         //启动上面的函数
-        Key.init();
+        Cat.init();
     </script>
 @stop
 

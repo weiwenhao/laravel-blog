@@ -134,9 +134,9 @@ class ArticleRepository extends Repository
         $total = $data->count();
         //加上排序和分页
         $data = $data->orderBy($order['field'],$order['dir'])->offset($start)->limit($length)->get(['id','title','seo_title','description','publish_at','updated_at','cat_id']);
-        //为返回对象添加一个cat_name,再添加两个按钮,编辑和删除
+        //为返回对象添加一个name,再添加两个按钮,编辑和删除
         foreach ($data as $value){ //取出关联键才能使用关联模型, 对象自带引用传递属性 ,$value是单个article模型
-            $value->cat_name = $value->category->cat_name;
+            $value->name = $value->category->name;
         }
         return [
             "draw" => $draw,

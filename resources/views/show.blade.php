@@ -27,7 +27,7 @@
 
 @section('header-content')
     <div class="site-heading">
-        <h1>{{ $article->category->cat_name }}</h1>
+        <h1>{{ $article->category->name }}</h1>
         <hr class="small">
         <h3>www.weiwenhao.org</h3>
     </div>

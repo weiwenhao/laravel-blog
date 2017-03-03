@@ -11,7 +11,6 @@
 |
 */
 
-use Illuminate\Support\Facades\Input;
 //auth('admin')->logout();
 Route::get('/', function () {
 //    return view('welcome');
@@ -28,7 +27,7 @@ Route::group(['middleware' => 'web'], function () {
 Auth::routes();
 
 /*
- * 后台
+ * 后台登录注册路由,上线后注意注释掉注册路由
  */
 
 Route::group(['prefix' => 'admin','namespace'=>'Admin'], function () {
@@ -40,11 +39,9 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin'], function () {
     Route::post('register','Auth\RegisterController@register');
 
     Route::post('logout','Auth\LoginController@logout');
-    //后台主页
-    Route::get('','AdminController@index');
 });
 
-Route::group(['prefix' => 'admin','namespace'=>'Admin'], function () {
+Route::group(['prefix' => 'admin','namespace'=>'Admin','middleware'=>['auth.admin']], function () {
     //后台框架
     Route::get('',function (){  //  /admin  -> 框架层
        return view('admin.layouts.ifarme'); //外层框架
@@ -54,11 +51,23 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin'], function () {
         return view('admin.index');
     });
     //文章管理
-    Route::get('/article/ajaxIndex','ArticleController@ajaxIndex');
+    Route::get('/article/ajax_index','ArticleController@ajaxIndex');
     Route::resource('article', 'ArticleController');
     //标签管理
     Route::get('/key/ajax_key','KeyController@ajaxIndex');
     Route::resource('key', 'KeyController');
+    //分类管理
+    Route::get('/category/ajax_category','CategoryController@ajaxIndex');
+    Route::resource('category', 'CategoryController');
+    //评论管理
+    Route::get('/comment/ajax_index','CommentController@ajaxIndex');
+    Route::delete('/comment/{comment}','CommentController@destroy');
+    Route::get('/comment',function (){ //显示主页
+        return view('admin.comment.list');
+    });
+    //画布管理
+    Route::resource('/img','ImgController');
+
 
 });
 

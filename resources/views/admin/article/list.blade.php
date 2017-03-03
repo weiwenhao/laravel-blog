@@ -87,7 +87,7 @@
                     "regex": true  //正则搜索还是精确搜索
                 },
                 "ajax": {
-                    "url" : '/admin/article/ajaxIndex',
+                    "url" : '/admin/article/ajax_index',
                 },
                 "columns": [
                     /*{ 服务器模式不可添加
@@ -101,7 +101,8 @@
                     },
                     {
                         'name':'title',
-                        'data':'title'
+                        'data':'title',
+                        "width": "20%"
                     },
                     {
                         'name':'description',
@@ -112,7 +113,7 @@
                         }
                     },
                     {
-                        'data':'cat_name',
+                        'data':'name',
                         "orderable" : false,
                     },
                     {
@@ -140,15 +141,12 @@
                         // 'width': "120px",
                         targets: -1, //最后一列,
                         render: function(data, type, row, meta) { //row中返回在 后台get或者是all取出的一条记录,
-                            // return '<input type="checkbox" name="checklist" value="' + row.id + '" />' //return的数据会覆盖第 targets中指定的列数
-                            //row中拥有一行中的所有数据, row.id  row.name row.display_name
                             return "<button value="+row.seo_title+" class='btn btn-xs btn-success show-article'><i class='fa fa-eye'></i> 预览</button> "+
                                 "<a  href='/admin/article/"+row.id+"/edit' class='btn btn-xs btn-info'><i class='fa fa-edit'></i> 编辑</a> " +
                                 "<button value="+row.id+" class='btn btn-xs btn-danger del-article'><i class='fa fa-trash'></i>  删除</button>";
-                        }
+                        },
+                        width: "20%"
                     },
-                    //给第二列指定宽度为表格整个宽度的20%
-                    { "width": "20%", "targets": 1 }
                 ],
 
             });

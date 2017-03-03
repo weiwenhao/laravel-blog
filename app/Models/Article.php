@@ -28,6 +28,14 @@ class Article extends Model
         return $this->belongsToMany(Key::class);
     }
 
+    /**
+     * 评论关联关系
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class,'article_id','id');
+    }
+
 
     /*public function scopePublish($query){
          Article::publish(); 可以类似这样调用
