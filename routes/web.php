@@ -12,6 +12,8 @@
 */
 
 //auth('admin')->logout();
+use Intervention\Image\Facades\Image;
+
 Route::get('/', function () {
 //    return view('welcome');
     return redirect('/article');
@@ -99,6 +101,9 @@ Route::get('/test',function (Faker\Generator $faker,\App\Repositories\ArticleRep
 //    dd(\App\Models\Article::with('category')->get()[0]->category);
 //    echo \App\Models\Article::find(1)->category->id;
 //    dd(\App\Models\Article::find(1)->keys->toArray());
+//    dd(Image::make('http://e.hiphotos.baidu.com/zhidao/pic/item/6c224f4a20a44623c51afdd39a22720e0df3d7ab.jpg') );
+//        dd(date('YmdHis'));
+    dd(base_path('public/uploads/images/'));
 });
 
 // [your site path]/Http/routes.php

@@ -47,6 +47,12 @@
                     <span class="nav-label">评论管理</span>
                 </a>
             </li>
+            <li>
+                <a class="J_menuItem" href="/admin/img">
+                    <i class="fa fa-image"></i>
+                    <span class="nav-label">相册管理</span>
+                </a>
+            </li>
 
             <li class="line dk"></li>
         </ul>

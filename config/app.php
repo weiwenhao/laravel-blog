@@ -190,6 +190,9 @@ return [
 
         //文章标题 slug优化
         \JellyBool\Translug\TranslugServiceProvider::class,
+
+        //图片处理
+        Intervention\Image\ImageServiceProvider::class,
     ],
 
     /*
@@ -247,6 +250,9 @@ return [
 
         //seo_title优化函数
         'Translug' => \JellyBool\Translug\TranslugFacade::class,
+
+        //图片处理
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];
