@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             DB::table('comments')->truncate();
             DB::table('article_key')->truncate();
             DB::table('admins')->truncate();
+//            DB::table('imgs')->truncate();
 
         // $this->call(UsersTableSeeder::class);
             $this->call(CategoryTableSeeder::class);
@@ -24,5 +25,6 @@ class DatabaseSeeder extends Seeder
             $this->call(ArticlesTableSeeder::class);
             $this->call(CommentTableSeeder::class);
             $this->call(AdminsTableSeeder::class);
+//            $this->call(ImgsTableSeeder::class);
     }
 }

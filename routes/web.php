@@ -68,6 +68,7 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin','middleware'=>['auth.admi
         return view('admin.comment.list');
     });
     //画布管理
+    Route::get('/img/get_imgs','ImgController@getImgs');
     Route::resource('/img','ImgController');
 
 
@@ -103,7 +104,9 @@ Route::get('/test',function (Faker\Generator $faker,\App\Repositories\ArticleRep
 //    dd(\App\Models\Article::find(1)->keys->toArray());
 //    dd(Image::make('http://e.hiphotos.baidu.com/zhidao/pic/item/6c224f4a20a44623c51afdd39a22720e0df3d7ab.jpg') );
 //        dd(date('YmdHis'));
-    dd(base_path('public/uploads/images/'));
+//    dd(base_path('public/uploads/images/'));
+    echo public_path(config('blog.show_img_path')).'<br>';
+    echo public_path(config('blog.img_path')).'<br>';
 });
 
 // [your site path]/Http/routes.php

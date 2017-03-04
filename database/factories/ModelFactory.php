@@ -50,3 +50,11 @@ $factory->define(App\Models\Comment::class, function (Faker\Generator $faker) {
         'goodNum' => mt_rand(0,100)
     ];
 });
+
+//略缩图填充
+$factory->define(\App\Models\Img::class,function (Faker\Generator $faker){
+    return [
+      'img' => $faker->imageUrl(1300,300),
+       'sm_img' => $faker->imageUrl(198,100),
+    ];
+});
