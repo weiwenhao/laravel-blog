@@ -9,6 +9,7 @@
 namespace App\Http\ViewComposers;
 
 
+use App\Models\Img;
 use App\Repositories\CategoryRepository;
 use App\Repositories\KeyRepository;
 use Illuminate\Contracts\View\View;
@@ -71,8 +72,16 @@ class HomeComposer
          */
         $keys = $this->key->all();
 
+        /**
+         * header_img 的图片路径
+         * 随机取得一张图片
+         */
+        $imgs = Img::get(['img']);
+        $leng = $imgs->count();
+        $img_path = $imgs[mt_rand(0,$leng-1)]->img;
+
         //绑定变量到view中
-        return $view->with(compact('categorys','title','keys'));
+        return $view->with(compact('categorys','title','keys','img_path'));
     }
 
 }

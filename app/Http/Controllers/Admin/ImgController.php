@@ -34,6 +34,7 @@ class ImgController extends Controller
      */
     public function create()
     {
+        return view('admin.img.add');
         //
     }
 
@@ -116,7 +117,6 @@ class ImgController extends Controller
     {
         //删除文件目录的文件
         $img = Img::find($id);
-
         $img_file = public_path($img->img);
         $sm_img_file = public_path($img->sm_img);
         @unlink($sm_img_file);

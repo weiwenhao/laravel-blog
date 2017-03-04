@@ -30,8 +30,6 @@
 <!-- 全局js -->
 <script src="/back/js/jquery.min.js"></script>
 <script src="/back/js/bootstrap.min.js"></script>
-{{--引入打包后的admin.js 主要包含 vue 和 vue-axios--}}
-<script src="/js/admin.js"></script>
 <!-- 自定义js -->
 <script src="/back/js/content.js"></script>
 @yield('js')

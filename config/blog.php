@@ -6,7 +6,7 @@
  * Time: 下午8:02
  */
 return [
-  'title' => '不忘初心 方得始终',
+  'title' => '择一事 终一生',
     'img_path' => env('IMG_PATH','uploads/images/'),
     'show_img_path' => env('IMG_PATH','/uploads/images/')
 ];

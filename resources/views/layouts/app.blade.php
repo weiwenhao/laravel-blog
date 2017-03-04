@@ -59,7 +59,7 @@
             </div>
         </nav>
 
-        <header class="intro-header" style="background-image: url('/img/header1.jpg')">
+        <header class="intro-header" style="background-image: url('{{ $img_path?$img_path:'/img/header1.jpg' }}')">
             <div class="container">
                 <div class="row">
                     <div class=" col-md-10 col-md-offset-1">
