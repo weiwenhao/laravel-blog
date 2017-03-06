@@ -29,19 +29,19 @@
         }
 
         /*背景透明*/
-        .touming-nav {
+        #touming-nav {
             filter: alpha(opacity=0);
             background-color: transparent;
             border-color: transparent;
         }
         /*字体显示清楚*/
-        .touming-nav .navbar-nav > li > a {
+        #touming-nav .navbar-nav > li > a {
             color: #FFF;
         }
-        .touming-nav .navbar-nav > li > a:hover {
+        #touming-nav .navbar-nav > li > a:hover {
             color: #C9BCC4;;
         }
-        .touming-nav .navbar-brand {
+        #touming-nav .navbar-brand {
             color: #FFF;
         }
         /*背景透明完*/
@@ -51,23 +51,26 @@
          */
         #returnTop{
             position:fixed;
-            right: 100px;
-            bottom: 100px;
+            right: 10px;
+            bottom: 10px;
             display: none;
         }
 
+        code{
+            font-size: 18px;
+        }
         /**
         pre代码片段去边框
          */
-        pre {
+       /* pre {
             background-color: transparent;
             border : transparent;
-        }
+        }*/
     </style>
 </head>
 <body>
 <div id="app">
-        <nav class="navbar navbar-default navbar-fixed-top touming-nav">
+        <nav id="touming-nav" class="navbar navbar-default navbar-fixed-top ">
             <div class="container">
                 <div class="navbar-header">
 
@@ -97,7 +100,40 @@
                             <li><a href="/article?cat_id={{ $category->id }}">{{ $category->name }}</a></li>
                         @endforeach
                         <li><a href="/call_me">CALL ME</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <nav  id="nav" class="navbar navbar-default navbar-fixed-top " style="display: none" >
+            <div class="container">
+                <div class="navbar-header">
 
+                    <!-- Collapsed Hamburger -->
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                        <span class="sr-only">Toggle Navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <!-- Branding Image -->
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        {{ config('app.name', 'WEIWENHAO') }}
+                    </a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="nav navbar-nav">
+                        &nbsp;
+                    </ul>
+
+                    <!-- Right Side Of Navbar -->
+                    <ul class="nav navbar-nav navbar-right">
+                        @foreach($categorys as $category)
+                            <li><a href="/article?cat_id={{ $category->id }}">{{ $category->name }}</a></li>
+                        @endforeach
+                        <li><a href="/call_me">CALL ME</a></li>
                     </ul>
                 </div>
             </div>
@@ -113,7 +149,12 @@
                                 @if(request('key_id'))
                                     <i class="glyphicon glyphicon-tag"></i>
                                 @endif
-                               {{ $title or config('blog.title') }}
+                                @if($title)
+                                    {{ $title }}
+                                @else
+                                    <img src="/img/logo.png" alt="">
+                                @endif
+                               {{--{{ $title or config('blog.title') }}--}}
                             </h1>
                             <hr class="small">
                             <h2>www.weiwenhao.org</h2>
@@ -131,6 +172,7 @@
     <div class="panel panel-default">
         <div class="panel-body text-center">
             <p class="text-info">Copyright © 魏文豪</p>
+            <p class="" style="font-size: 10px">豫ICP备17001857号-1</p>
         </div>
     </div>
 </footer>
@@ -143,7 +185,6 @@
 {{--页脚结束--}}
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-
     @yield('js')
     <script>
         $("#returnTop").click(function () {
@@ -155,7 +196,9 @@
             // div 滚动了
             var size = this.scrollY;
             if(size != 0){
-                $('nav').removeClass('touming-nav')
+                $('#nav').fadeIn(500);
+                $('#touming-nav').fadeOut(500);
+
                 if(size > 150){
                     $("#returnTop").fadeIn('1000');
                 }else {
@@ -163,7 +206,9 @@
                 }
 
             }else{
-                $('nav').addClass('touming-nav')
+                $('#touming-nav').fadeIn(366);
+                $('#nav').fadeOut(366);
+
                 $("#returnTop").fadeOut(1000);
             }
         });

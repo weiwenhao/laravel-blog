@@ -7,8 +7,10 @@
 
 require('./bootstrap');
 //引入代码高亮js
-var hljs = require('./app/highlight.min');
+window.hljs =  require('./app/highlight.min');
+/*hljs.initHighlightingOnLoad();*/
 hljs.initHighlightingOnLoad();
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -21,6 +23,12 @@ Vue.use(ElementUI)
 
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('article-comment', require('./components/Comment.vue'));
+
+Vue.directive('highlightjs', function(el) {  //定义一个vue指令
+    let blocks = el.querySelectorAll('pre code');
+    Array.prototype.forEach.call(blocks, hljs.highlightBlock);
+})
+
 
 const app = new Vue({
     el: '#app'

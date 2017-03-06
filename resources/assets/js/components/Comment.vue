@@ -16,8 +16,7 @@
                             </div>
 
 
-                            <p>
-                              {{ comment.content }}
+                            <p v-html="comment.content" v-highlightjs>
                             </p>
                             <br>
                             <span class="pull-right">
@@ -164,6 +163,13 @@
                         for(var i=1;i<=this.last_page;i++){
                             this.indexs.push(i);
                         }
+                        //等待元素渲染完毕,进行转义处理
+                        /*this.$nextTick(function () {
+                            //重载代码高亮
+
+
+                        })*/
+
 
                     })
                     .catch(function (error) {

@@ -78,7 +78,13 @@ class HomeComposer
          */
         $imgs = Img::get(['img']);
         $leng = $imgs->count();
-        $img_path = $imgs[mt_rand(0,$leng-1)]->img;
+        if($leng > 0 ){
+            $img_path = $imgs[mt_rand(0,$leng-1)]->img;
+        }else{
+            $img_path = null;
+        }
+
+
 
         //绑定变量到view中
         return $view->with(compact('categorys','title','keys','img_path'));

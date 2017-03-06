@@ -56923,8 +56923,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 __webpack_require__(104);
 //引入代码高亮js
-var hljs = __webpack_require__(103);
+window.hljs = __webpack_require__(103);
+/*hljs.initHighlightingOnLoad();*/
 hljs.initHighlightingOnLoad();
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -56937,6 +56939,12 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_0_element_ui___default.a);
 
 Vue.component('example', __webpack_require__(109));
 Vue.component('article-comment', __webpack_require__(108));
+
+Vue.directive('highlightjs', function (el) {
+  //定义一个vue指令
+  var blocks = el.querySelectorAll('pre code');
+  Array.prototype.forEach.call(blocks, hljs.highlightBlock);
+});
 
 var app = new Vue({
   el: '#app'
@@ -56960,7 +56968,6 @@ var app = new Vue({
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
 //
 //
 //
@@ -57129,6 +57136,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     for (var i = 1; i <= _this.last_page; i++) {
                         _this.indexs.push(i);
                     }
+                    //等待元素渲染完毕,进行转义处理
+                    /*this.$nextTick(function () {
+                        //重载代码高亮
+                      })*/
                 }).catch(function (error) {
                     console.log(error);
                 });
@@ -59930,7 +59941,7 @@ exports = module.exports = __webpack_require__(30)();
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -77117,7 +77128,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "row"
     }, [_c('div', {
       staticClass: "col-md-10"
-    }, [_c('h3', [_vm._v(_vm._s(comment.username) + " :")])])]), _vm._v(" "), _c('p', [_vm._v("\n                              " + _vm._s(comment.content) + "\n                            ")]), _vm._v(" "), _c('br'), _vm._v(" "), _c('span', {
+    }, [_c('h3', [_vm._v(_vm._s(comment.username) + " :")])])]), _vm._v(" "), _c('p', {
+      directives: [{
+        name: "highlightjs",
+        rawName: "v-highlightjs"
+      }],
+      domProps: {
+        "innerHTML": _vm._s(comment.content)
+      }
+    }), _vm._v(" "), _c('br'), _vm._v(" "), _c('span', {
       staticClass: "pull-right"
     }, [_vm._v("\n                                " + _vm._s(comment.created_at) + "\n                            ")]), _vm._v(" "), _c('div', {
       staticClass: "clearfix"
