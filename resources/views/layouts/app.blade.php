@@ -12,7 +12,6 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
     @yield('css')
     <!-- Scripts -->
     <script>
@@ -20,10 +19,55 @@
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
+    <style>
+        body{
+            /*font-family:Georgia, "Times New Roman",
+            "Microsoft YaHei", "微软雅黑",  !*win下的默认中文字体*!
+            STXihei, "华文细黑", !*mac下的默认中文字体*!
+            sans-serif;*/
+            font-family: NotoSansHans-Regular,AvenirNext-Regular,arial,Hiragino Sans GB,"Microsoft Yahei","Hiragino Sans GB","WenQuanYi Micro Hei",sans-serif;;
+        }
+
+        /*背景透明*/
+        .touming-nav {
+            filter: alpha(opacity=0);
+            background-color: transparent;
+            border-color: transparent;
+        }
+        /*字体显示清楚*/
+        .touming-nav .navbar-nav > li > a {
+            color: #FFF;
+        }
+        .touming-nav .navbar-nav > li > a:hover {
+            color: #C9BCC4;;
+        }
+        .touming-nav .navbar-brand {
+            color: #FFF;
+        }
+        /*背景透明完*/
+
+        /**
+        回到顶部
+         */
+        #returnTop{
+            position:fixed;
+            right: 100px;
+            bottom: 100px;
+            display: none;
+        }
+
+        /**
+        pre代码片段去边框
+         */
+        pre {
+            background-color: transparent;
+            border : transparent;
+        }
+    </style>
 </head>
 <body>
 <div id="app">
-        <nav class="navbar navbar-default navbar-fixed-top">
+        <nav class="navbar navbar-default navbar-fixed-top touming-nav">
             <div class="container">
                 <div class="navbar-header">
 
@@ -52,7 +96,7 @@
                         @foreach($categorys as $category)
                             <li><a href="/article?cat_id={{ $category->id }}">{{ $category->name }}</a></li>
                         @endforeach
-                        <li><a href="#">CALL ME</a></li>
+                        <li><a href="/call_me">CALL ME</a></li>
 
                     </ul>
                 </div>
@@ -62,7 +106,7 @@
         <header class="intro-header" style="background-image: url('{{ $img_path?$img_path:'/img/header1.jpg' }}')">
             <div class="container">
                 <div class="row">
-                    <div class=" col-md-10 col-md-offset-1">
+                    <div class=" col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
                         @section('header-content')
                         <div class="site-heading">
                             <h1>
@@ -83,21 +127,46 @@
         @yield('content')
     </div>
 {{--页脚开始--}}
-<footer class="container-fluid">
+<footer class="container-fluid" >
     <div class="panel panel-default">
         <div class="panel-body text-center">
             <p class="text-info">Copyright © 魏文豪</p>
         </div>
     </div>
 </footer>
+{{--返回顶部--}}
+@section('returnTop')
+<div id="returnTop">
+    <button class="btn btn-lg btn-info"><i class="glyphicon glyphicon-chevron-up"></i></button>
+</div>
+@show
 {{--页脚结束--}}
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 
-    {{--弹出层临时解决方案,带完善--}}
-    <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
-    <script src="{{asset('vendor/layer/layer.js')}}"></script>
-
     @yield('js')
+    <script>
+        $("#returnTop").click(function () {
+            var speed=500;//滑动的速度
+            $('body,html').animate({ scrollTop: 0 }, speed);
+            return false;
+        });
+        $(window).on('scroll',function(){
+            // div 滚动了
+            var size = this.scrollY;
+            if(size != 0){
+                $('nav').removeClass('touming-nav')
+                if(size > 150){
+                    $("#returnTop").fadeIn('1000');
+                }else {
+                    $("#returnTop").fadeOut(1000);
+                }
+
+            }else{
+                $('nav').addClass('touming-nav')
+                $("#returnTop").fadeOut(1000);
+            }
+        });
+    </script>
 </body>
 </html>

@@ -25,8 +25,10 @@ Route::get('/', function () {
 Route::group(['middleware' => 'web'], function () {
     Route::get('/article','ArticleController@index');
     Route::get('/article/{id}','ArticleController@show');
+    Route::get('/call_me','ArticleController@showCallMe');
+    Route::post('/call_me','ArticleController@callMe');
 });
-Auth::routes();
+/*Auth::routes();*/
 
 /*
  * 后台登录注册路由,上线后注意注释掉注册路由
@@ -37,8 +39,9 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin'], function () {
     Route::get('login','Auth\LoginController@showLoginForm');
     Route::post('login','Auth\LoginController@login');
 
-    Route::get('register','Auth\RegisterController@showRegistrationForm');
-    Route::post('register','Auth\RegisterController@register');
+    //注册入口已经关闭
+    /*Route::get('register','Auth\RegisterController@showRegistrationForm');
+    Route::post('register','Auth\RegisterController@register');*/
 
     Route::post('logout','Auth\LoginController@logout');
 });
@@ -47,11 +50,12 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin','middleware'=>['auth.admi
     //后台框架
     Route::get('',function (){  //  /admin  -> 框架层
        return view('admin.layouts.ifarme'); //外层框架
+        // -> 该框架层的子框架的初始 src=/admin/index,所以由框架的外层和子层
+        //共同构建出了我们所看到的后台登录后的第一个界面，而后每一次点击链接，都会变换子层，浏览器的地址栏依旧不变
+        //仿佛就是一个单页应用一般
     });
     //控制台
-    Route::get('index',function (){  //第一个界面, dash,也就是面板页
-        return view('admin.index');
-    });
+    Route::get('index','IndexController@index');
     //文章管理
     Route::get('/article/ajax_index','ArticleController@ajaxIndex');
     Route::resource('article', 'ArticleController');
@@ -105,8 +109,8 @@ Route::get('/test',function (Faker\Generator $faker,\App\Repositories\ArticleRep
 //    dd(Image::make('http://e.hiphotos.baidu.com/zhidao/pic/item/6c224f4a20a44623c51afdd39a22720e0df3d7ab.jpg') );
 //        dd(date('YmdHis'));
 //    dd(base_path('public/uploads/images/'));
-    echo public_path(config('blog.show_img_path')).'<br>';
-    echo public_path(config('blog.img_path')).'<br>';
+//    echo public_path(config('blog.show_img_path')).'<br>';
+//    echo public_path(config('blog.img_path')).'<br>';
 });
 
 // [your site path]/Http/routes.php

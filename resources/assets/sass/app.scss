@@ -1,9 +1,6 @@
 
-//app界面的style样式
-@import "app/style.css";
-
-//font
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+//引入代码高亮
+@import "app/monokai-sublime.css";
 
 // Variables
 @import "variables";
@@ -11,3 +8,5 @@
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+//app界面的style样式
+@import "app/style.css";

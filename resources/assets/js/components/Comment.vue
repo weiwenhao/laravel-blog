@@ -26,36 +26,6 @@
                             <div class="clearfix"></div>
                         </div>
                     </li>
-                    <!--<li class="comment">
-                        <div>
-                            <h3>1101140857@qq.com :</h3>
-                            <p>
-                                文章对我的帮助很大,但是有几个地方仍然需要改进
-                                文章对我的帮助很大,但是有几个地方仍然需要改进
-                                文章对我的帮助很大,但是有几个地方仍然需要改进
-                            </p>
-                            <br>
-                            <span class="pull-right">
-                                            2017年02月21日17:25:29
-                                        </span>
-                            <div class="clearfix"></div>
-                        </div>
-                    </li>
-                    <li class="comment">
-                        <div>
-                            <h3>1101140857@qq.com :</h3>
-                            <p>
-                                文章对我的帮助很大,但是有几个地方仍然需要改进
-                                文章对我的帮助很大,但是有几个地方仍然需要改进
-                                文章对我的帮助很大,但是有几个地方仍然需要改进
-                            </p>
-                            <br>
-                            <span class="pull-right">
-                                            2017年02月21日17:25:29
-                                        </span>
-                            <div class="clearfix"></div>
-                        </div>
-                    </li>-->
                 </ul>
                 <div class="text-center">
                     <nav aria-label="Page navigation">
@@ -218,7 +188,10 @@
                 .then(response=> {
                      if(response.data){
                          //弹出评论成功
-                         layer.msg('评论成功', {icon: 1});
+                         this.$message({
+                             message: '评论成功',
+                             type: 'success'
+                         });
                          //清空输入框
                          this.username = null;
                          this.content = null;

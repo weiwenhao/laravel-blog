@@ -7936,3 +7936,13 @@ body.skin-3 {
     font-size: 0;
     background-color: #131e26;
 }
+
+.my-widget i {
+    font-size: 170px;
+}
+.my-widget h1 {
+    font-size: 100px;
+}
+.my-widget h3 {
+    font-size: 30px;
+}

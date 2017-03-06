@@ -73,7 +73,7 @@ class ArticleRepository extends Repository
 
     /**
      * 得到文章的datetables需要用到的数据
-     * @return mixed Builder
+     * @return mixed Builder //查询构造器
      */
     private function commonBuilder(){
         $key_id = request('key_id');
@@ -87,7 +87,7 @@ class ArticleRepository extends Repository
             $where[] = ['cat_id',$cat_id];
 
         }
-        $data = $this->model->where($where);
+        $data = $this->model->with('keys')->where($where);
 
         //搜索这里类似与cat_id直接加条件即可
         if($search){ //不带标签部分,如果带标签怎么处理?连表吗?

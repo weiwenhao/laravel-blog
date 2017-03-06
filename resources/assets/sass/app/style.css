@@ -1,7 +1,4 @@
 
-body{
-    padding-top: 50px;
-}
 .post-preview > a {
     display: block;
     color: #404040;
@@ -73,6 +70,11 @@ ul.list-unstyled li {
     margin-bottom: 20px;
     padding-bottom:20px;
 }
+
+
+
+
+
 
 
 

@@ -60,7 +60,7 @@
                                 </div>
                             <br>
                                 <div class="content">
-                                    {{ $article->content }}
+                                    {!! $article->content !!}
                                 </div>
                         </article>
                         <ul class="pager">

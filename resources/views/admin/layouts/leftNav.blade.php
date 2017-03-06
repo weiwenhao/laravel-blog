@@ -19,8 +19,8 @@
             </li>
             <li>
                 <a class="J_menuItem" href="/admin/index">
-                    <i class="fa fa-home"></i>
-                    <span class="nav-label">后台主页</span>
+                    <i class="fa fa-dashboard"></i>
+                    <span class="nav-label">控制台</span>
                 </a>
             </li>
             <li>
