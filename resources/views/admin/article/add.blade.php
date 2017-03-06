@@ -17,7 +17,7 @@
                         <h5>添加文章</h5>
 
                     </div>
-                    <div class="ibox-content">
+                    <div id="add-article" class="ibox-content">
                         <form class="form-horizontal m-t" id="commentForm" method="post" action="/admin/article">
                             {{ csrf_field() }}
                             <div class="form-group {{ $errors->has('title')?'has-error':'' }}">
@@ -65,6 +65,23 @@
                                     @endif
                                 </div>
                             </div>
+                            <div class="form-group" :class="{ 'has-error': key_name_error }"> {{--这里的has-error不加''则会报错--}}
+                                <label class="col-sm-3 control-label">添加关键字：</label>
+                                <div class="col-sm-7">
+                                    <input type="text" value="{{old('add-key')}}" class="form-control"
+                                            placeholder="示例: laravel    填写完毕后别忘了点右边的添加→"
+                                        v-model="key_name"
+                                    >
+                                    <span class="help-block m-b-none" v-if="key_name_error">@{{ key_name_error }}</span>
+                                </div>
+                                <div class="col-sm-2">
+                                    <button class="btn btn-info" type="button"
+                                        @click='add_key'
+                                    >
+                                        <i class="fa fa-plus"></i> 添加
+                                    </button>
+                                </div>
+                            </div>
                             <div class="form-group {{ $errors->has('content')?'has-error':'' }}">
                                 <label class="col-sm-3 control-label">文章内容：</label>
                                 <div class="col-sm-8">
@@ -98,6 +115,7 @@
     </div>
 @stop
 @section('js')
+    <script src="/js/admin.js"></script>
     {{--select2--}}
     <script src="/back/js/select2.min.js"></script>
 
@@ -109,6 +127,43 @@
     {{--日期选择器--}}
     <script src="/back/js/plugins/layer/laydate/laydate.js"></script>
 <script>
+    //vue
+    var vm = new Vue({
+        el: '#add-article', //挂载元素
+        data : {
+            key_name : '',
+            keys : [],
+            key_name_error : false,
+        },
+        methods: {
+            add_key(){
+                 axios.post('/admin/key', {
+                  	//key : value
+                     'name' : this.key_name,
+                 })
+                 .then(response=> {
+                 	if(response.data){
+                 	    //清空输入框
+                        this.key_name = '';
+                        //使用jquery添加一个option
+                        var html = '<option value="'+response.data.id+'">'+response.data.name+'</option>';
+                        $('.key-select').append(html);
+                        //提示添加成功
+                        this.$message({
+                            message: '关键字已添加',
+                            type: 'success'
+                        });
+                    }
+                 })
+                 .catch(error=> {
+                     if(error.response.data.name){
+                         this.key_name_error = error.response.data.name[0];
+                     }
+                 });
+            }
+        }
+    });
+
     $(document).ready(function() {
         //分类下拉框
         $(".cat-select").select2();

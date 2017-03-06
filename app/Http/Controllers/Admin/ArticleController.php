@@ -57,7 +57,7 @@ class ArticleController extends Controller
      */
     public function ajaxIndex(){
         $res = $this->article->getDataTables();
-        return response()->json($res);//转化成json对象并返回
+        return $res;//转化成json对象并返回
     }
     /**
      * Show the form for creating a new resource.

@@ -98,8 +98,8 @@
                             }*/
                         },
                         {
-                            'name':'article_name',
-                            'data':'article_name',
+                            'name':'article_title',
+                            'data':'article_title',
                             "orderable" : false,
 
                         },

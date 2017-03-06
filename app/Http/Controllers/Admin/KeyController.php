@@ -69,7 +69,7 @@ class KeyController extends Controller
         $res = $this->key->create($request->all());
         if($res){
 //            return response()->json($res); //直接把新插入的整条数据返回??前台不需要
-            return response()->json(1);
+            return $res;
         }
         //响应
     }

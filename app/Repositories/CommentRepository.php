@@ -62,9 +62,12 @@ class CommentRepository extends Repository
         $total = $data->count();
         //加上排序和分页
         $data = $data->orderBy($order['field'],$order['dir'])->offset($start)->limit($length)->get(['id','username','content','article_id','goodNum','created_at']);
-        //为返回对象添加一个name,再添加两个按钮,编辑和删除
+        //为返回对象添加一个文章标题,并过滤用户的输入
         foreach ($data as $value){ //取出关联键才能使用关联模型, 对象自带引用传递属性 ,$value是单个article模型
-            $value->article_name = $value->article->title;
+            $value->article_title = $value->article->title;
+            //过滤用户输入的两个字符
+            $value->username = htmlentities($value->username,ENT_QUOTES); //默认utf-8
+            $value->content = htmlentities($value->content,ENT_QUOTES);
         }
         return [
             "draw" => $draw,

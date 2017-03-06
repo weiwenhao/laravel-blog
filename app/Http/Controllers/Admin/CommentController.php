@@ -25,7 +25,7 @@ class CommentController extends Controller
     public function ajaxIndex()
     {
         $res = $this->comment->getDataTables();
-        return response()->json($res);//转化成json对象并返回
+        return $res;//转化成json对象并返回
     }
 
     /**
