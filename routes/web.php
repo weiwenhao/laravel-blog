@@ -40,8 +40,8 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin'], function () {
     Route::post('login','Auth\LoginController@login');
 
     //注册入口已经关闭
-    /*Route::get('register','Auth\RegisterController@showRegistrationForm');
-    Route::post('register','Auth\RegisterController@register');*/
+//    Route::get('register','Auth\RegisterController@showRegistrationForm');
+//    Route::post('register','Auth\RegisterController@register');
 
     Route::post('logout','Auth\LoginController@logout');
 });

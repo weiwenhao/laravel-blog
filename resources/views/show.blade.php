@@ -22,6 +22,14 @@
             text-align: center;
             color: white;
         }
+
+        /**
+        代码后台透明
+         */
+        pre {
+            background-color: transparent;
+            border: 1px solid transparent;
+        }
     </style>
 @stop
 
