@@ -7,7 +7,7 @@
 {{--页面主体--}}
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-sm-8">
+        <div class="col-md-8">
             <div class="panel panel-default">
                 <div class="panel-body">
                     @if($articles->count()>0)
@@ -47,7 +47,7 @@
             </div>
 
         </div>
-        <div class="col-md-4 col-sm-4">
+        <div class="col-md-4">
         @include('layouts.rightNav')
         </div>
 
