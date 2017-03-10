@@ -157,7 +157,7 @@
                                {{--{{ $title or config('blog.title') }}--}}
                             </h1>
                             <hr class="small">
-                            <h2>www.weiwenhao.org</h2>
+                            <h2>www.weiwenhao.xyz</h2>
                         </div>
                         @show
                     </div>
