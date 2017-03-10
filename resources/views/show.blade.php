@@ -30,6 +30,18 @@
             background-color: transparent;
             border: 1px solid transparent;
         }
+        /**
+        img标签居中且自适应，摘抄自bootstrap,后期考虑使用正则替换img标签
+         */
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 100%;
+            height: auto;
+            vertical-align: middle;
+            border: 0;
+        }
     </style>
 @stop
 

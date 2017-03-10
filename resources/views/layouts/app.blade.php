@@ -152,7 +152,7 @@
                                 @if($title)
                                     {{ $title }}
                                 @else
-                                    <img src="/img/logo.png" alt="">
+                                    <img class="img-responsive center-block" src="/img/logo.png" alt="">
                                 @endif
                                {{--{{ $title or config('blog.title') }}--}}
                             </h1>
