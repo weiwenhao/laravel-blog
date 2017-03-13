@@ -6,7 +6,7 @@
     <div class="site-heading">
         <h1>联系我</h1>
         <hr class="small">
-        <h3>www.weiwenhao.org</h3>
+        <h3>www.weiwenhao.xyz</h3>
     </div>
 @stop
 @section('content')
