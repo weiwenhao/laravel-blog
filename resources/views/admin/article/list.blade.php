@@ -78,7 +78,7 @@
                     },
 
                 }, //语言国际化
-                "order": [[ 0, "desc" ]],
+                "order": [[ 0, "desc" ]], //默认排序
                 "serverSide": true,//开启服务器模式
                 "searchDelay": 1000, //搜索框请求间隔
                 // "lengthMenu": [15,25,50], //自定义每页显示条数菜单
