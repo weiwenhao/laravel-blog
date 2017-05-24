@@ -72,6 +72,82 @@ ul.list-unstyled li {
 }
 
 
+/**
+个人简历
+ */
+
+.resume h1 {
+    /*color: #5bc0de;*/
+    color: #337ab7;
+    font-weight: bold;
+}
+.resume  h2 {
+    color: #337ab7;
+}
+.resume  h3 {
+    color: #337ab7;
+}
+.resume  h4 {
+    color: #337ab7;
+}
+.resume  a {
+    color: #51547d;
+}
+.resume > .row > .title {
+    background-color: #f5f8fa;
+}
+.resume .body {
+    background-color: #fff;
+    padding-bottom: 30px;
+}
+
+.resume > .row > .title .logo img {
+    width: 70%;
+    border-radius:50%;
+    margin: 0 auto;
+}
+.resume > .row > .title .logo {
+    margin-top: 25%;
+}
+
+.resume > .row > .title .info-title {
+    margin-top: 4rem;
+}
+.resume > .row > .title .info-body {
+    margin-top: 4rem;
+}
+.resume > .row > .title .info-body .row  {
+    font-size: 1.2em;
+    color: #7d7d7d;
+    margin-left: 15px;
+    line-height: 2.2em;
+}
+.resume > .row > .title .info-body .row i {
+    margin-right: 1em;
+    color: #337ab7;
+}
+
+.resume  .project-content .title {
+    font-size: 1.5em;
+}
+.resume .project-content .content {
+    margin: 10px 0;
+    color: #7d7d7d;
+}
+
+.resume .skill .content {
+    margin: 10px 0;
+    color: #7d7d7d;
+    line-height: 1.8em;
+}
+.resume .profile p{
+    font-size: 2em;
+}
+
+.erweima > img{
+    width: 200px;
+}
+
 
 
 

@@ -194,9 +194,12 @@
                 .then(response=> {
                      if(response.data){
                          //弹出评论成功
-                         this.$message({
-                             message: '评论成功',
-                             type: 'success'
+                         swal({
+                             title: "评论成功",
+                             text: "",
+                             type: 'success',
+                             timer: 1000,
+                             showConfirmButton: false
                          });
                          //清空输入框
                          this.username = null;

@@ -70,103 +70,105 @@
 </head>
 <body>
 <div id="app">
-        <nav id="touming-nav" class="navbar navbar-default navbar-fixed-top ">
-            <div class="container">
-                <div class="navbar-header">
+    <nav id="touming-nav" class="navbar navbar-default navbar-fixed-top ">
+        <div class="container">
+            <div class="navbar-header">
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#touming-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+                <!-- Collapsed Hamburger -->
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#touming-navbar-collapse">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
 
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'WEIWENHAO') }}
-                    </a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="touming-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        @foreach($categorys as $category)
-                            <li><a href="/article?cat_id={{ $category->id }}">{{ $category->name }}</a></li>
-                        @endforeach
-                        <li><a href="/call_me">CALL ME</a></li>
-                    </ul>
-                </div>
+                <!-- Branding Image -->
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    {{ config('app.name', 'WEIWENHAO') }}
+                </a>
             </div>
-        </nav>
-        <nav  id="nav" class="navbar navbar-default navbar-fixed-top " style="display: none" >
-            <div class="container">
-                <div class="navbar-header">
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+            <div class="collapse navbar-collapse" id="touming-navbar-collapse">
+                <!-- Left Side Of Navbar -->
+                <ul class="nav navbar-nav">
+                    &nbsp;
+                </ul>
 
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'WEIWENHAO') }}
-                    </a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        @foreach($categorys as $category)
-                            <li><a href="/article?cat_id={{ $category->id }}">{{ $category->name }}</a></li>
-                        @endforeach
-                        <li><a href="/call_me">CALL ME</a></li>
-                    </ul>
-                </div>
+                <!-- Right Side Of Navbar -->
+                <ul class="nav navbar-nav navbar-right">
+                    @foreach($categorys as $category)
+                        <li><a href="/article?cat_id={{ $category->id }}">{{ $category->name }}</a></li>
+                    @endforeach
+                    <li><a href="/resume">RESUME</a></li>
+                    <li><a href="/call_me">CALL ME</a></li>
+                </ul>
             </div>
-        </nav>
+        </div>
+    </nav>
+    <nav  id="nav" class="navbar navbar-default navbar-fixed-top " style="display: none" >
+        <div class="container">
+            <div class="navbar-header">
 
-        <header class="intro-header" style="background-image: url('{{ $img_path?$img_path:'/img/header1.jpg' }}')">
-            <div class="container">
-                <div class="row">
-                    <div class=" col-md-10 col-md-offset-1">
-                        @section('header-content')
-                        <div class="site-heading">
-                            <h1>
-                                @if(request('key_id'))
-                                    <i class="glyphicon glyphicon-tag"></i>
-                                @endif
-                                @if($title)
-                                    {{ $title }}
-                                @else
-                                    <img class="img-responsive center-block" src="/img/logo.png" alt="">
-                                @endif
-                               {{--{{ $title or config('blog.title') }}--}}
-                            </h1>
-                            <hr class="small">
-                            <h2>www.weiwenhao.xyz</h2>
-                        </div>
-                        @show
+                <!-- Collapsed Hamburger -->
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <!-- Branding Image -->
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    {{ config('app.name', 'WEIWENHAO') }}
+                </a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                <!-- Left Side Of Navbar -->
+                <ul class="nav navbar-nav">
+                    &nbsp;
+                </ul>
+
+                <!-- Right Side Of Navbar -->
+                <ul class="nav navbar-nav navbar-right">
+                    @foreach($categorys as $category)
+                        <li><a href="/article?cat_id={{ $category->id }}">{{ $category->name }}</a></li>
+                    @endforeach
+                    <li><a href="/resume">RESUME</a></li>
+                    <li><a href="/call_me">CALL ME</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="intro-header" style="background-image: url('{{ $img_path?$img_path:'/img/header1.jpg' }}')">
+        <div class="container">
+            <div class="row">
+                <div class=" col-md-10 col-md-offset-1">
+                    @section('header-content')
+                    <div class="site-heading">
+                        <h1>
+                            @if(request('key_id'))
+                                <i class="glyphicon glyphicon-tag"></i>
+                            @endif
+                            @if($title)
+                                {{ $title }}
+                            @else
+                                <img class="img-responsive center-block" src="/img/logo.png" alt="">
+                            @endif
+                           {{--{{ $title or config('blog.title') }}--}}
+                        </h1>
+                        <hr class="small">
+                        <h2>www.weiwenhao.xyz</h2>
                     </div>
+                    @show
                 </div>
             </div>
-        </header>
+        </div>
+    </header>
 
-        @yield('content')
-    </div>
+    @yield('content')
+</div>
 {{--页脚开始--}}
 <footer class="container-fluid" >
     <div class="panel panel-default">

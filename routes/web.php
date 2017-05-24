@@ -27,6 +27,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/article/{id}','ArticleController@show');
     Route::get('/call_me','ArticleController@showCallMe');
     Route::post('/call_me','ArticleController@callMe');
+    Route::get('/resume', function (){
+        return view('resume');
+    });
 });
 /*Auth::routes();*/
 
