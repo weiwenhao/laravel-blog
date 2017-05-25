@@ -107,7 +107,7 @@ ul.list-unstyled li {
     margin: 0 auto;
 }
 .resume > .row > .title .logo {
-    margin-top: 25%;
+    /*margin-top: 25%;*/
 }
 
 .resume > .row > .title .info-title {

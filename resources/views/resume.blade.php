@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>简历</title>
     <script>
         window.Laravel = {!! json_encode([
@@ -92,6 +93,7 @@
 <div class="container resume" id="app">
     <div class="row">
         <div class="col-md-3 col-md-offset-1 title" id="title">
+            <br>
             <div class="logo">
                 <img src=".//img/wuye.jpeg" alt="" class="img-responsive">
             </div>
@@ -348,7 +350,11 @@
 <script>
     $(window).resize(setHeight);
     function setHeight() {
-        $("#title").css('height', $(".body").outerHeight(true));
+        if($(window).width() > 970){
+            $("#title").css('height', $(".body").outerHeight(true));
+        }else {
+            $("#title").css('height', '');
+        }
     }
     setHeight();
 </script>
